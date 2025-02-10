@@ -1,0 +1,24 @@
+[tool.poetry]
+# Package metadata
+name = "Streamlit CV"
+version = "0.1.0"
+description = "Streamlit CV and Portfolio"
+license = ""  # You can replace this with your chosen license
+
+# Authors and maintainers (optional)
+authors = ["Mehdi Bennis <bennismehdi91@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"  # You can specify a compatible Python version range here -> ^ ça veut dire 'Au moins telle version'
+pandas = "^2.2.2"
+ipykernel = "^6.29.4"
+black = "^24.4.2"
+streamlit = "^1.40.1"
+google-cloud-bigquery = "^3.27.0"
+jupyter = "^1.1.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.core.masonry.builders.sdist"
