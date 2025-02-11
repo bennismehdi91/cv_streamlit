@@ -6,7 +6,7 @@ EN = "English"
 IMG = Path("./files/images")
 
 with st.sidebar.expander("**Language**"):
-    local = st.radio("Select Language / Sélectionnez la langue:", (EN, FR))
+    local = st.radio("Select Language / Sélectionnez la langue:", (FR, EN))
 
 if local == EN:
     st.sidebar.markdown(
@@ -18,6 +18,7 @@ if local == EN:
         <li><a href="#educ">Educational Background</a></li>
         <li><a href="#skill">Skills</a></li>
         <li><a href="#language">Languages</li>
+        <li><a href="#hobbie">Hobbies</li>
     </ul>
     """,
         unsafe_allow_html=True,
@@ -32,6 +33,7 @@ else:
         <li><a href="#educ">Education</a></li>
         <li><a href="#skill">Compétences</a></li>
         <li><a href="#language">Langues</li>
+        <li><a href="#hobbie">Loisirs</li>
     </ul>
     """,
         unsafe_allow_html=True,
@@ -322,23 +324,23 @@ st.divider()
 if local == EN:
     st.markdown(
         """
-        - Python, specialization in data analytics : Pandas, Scikit Learn, Plotly, Matplotlib, Seaborn, python-pptx, Streamlit, requests, poetry
-        - Advanced knowledge in SQL, worked on MySQL, Google BigQuery.
-        - Dataviz : Looker, PowerBI, Apache Superset
-        - Automation : Fivetran, Zapier, Airflow
-        - Advanced knowledge in MS Excel, Word and PowerPoint
-        - Knowledge in HTML, CSS
+        - **Python**, specialization in data analytics : Pandas, Scikit Learn, Plotly, Matplotlib, Seaborn, python-pptx, Streamlit, requests, poetry
+        - Advanced knowledge in **SQL**, worked on MySQL, Google BigQuery.
+        - **Dataviz** : Looker, PowerBI, Apache Superset
+        - **Automation** : Fivetran, Zapier, Airflow
+        - Advanced knowledge in **MS Excel**, **Word** and **PowerPoint**
+        - Knowledge in **HTML**, **CSS**
         """
     )
 else:
     st.markdown(
         """
-        - Python, spécialisations en analyse de données : Pandas, Scikit Learn, Plotly, Matplotlib, Seaborn, python-pptx, Streamlit, requests, poetry.
-        - Connaissance avancée du langage SQL, travail sur MySQL, Google BigQuery.
-        - Data visualisation : Looker, PowerBI, Apache Superset
-        - Automatisation : Fivetran, Zapier, Airflow
-        - Connaissances avancées en MS Excel, Word et PowerPoint
-        - Connaissances en HTML, CSS
+        - **Python**, spécialisation en analyse de données : Pandas, Scikit Learn, Plotly, Matplotlib, Seaborn, python-pptx, Streamlit, requests, poetry.
+        - Connaissance avancée du langage **SQL**, travail sur MySQL, Google BigQuery.
+        - **Data visualisation** : Looker, PowerBI, Apache Superset
+        - **Automatisation** : Fivetran, Zapier, Airflow
+        - Connaissances avancées en **MS Excel**, **Word** et **PowerPoint**
+        - Connaissances en **HTML**, **CSS**
         """
     )
 
@@ -355,16 +357,44 @@ st.divider()
 if local == EN:
     st.markdown(
         """
-        - **French**: Native
-        - **English**: Full professional proficiency
-        - **Spanish**: Elementary level
+        - :fr: **French**: Native
+        - :uk: **English**: Full professional proficiency
+        - :es: **Spanish**: Elementary level
         """
     )
 else:
     st.markdown(
         """
-        - **French**: Natif
-        - **English**: Compétence professionnelle totale
-        - **Spanish**: Niveau élémentaire
+        - :fr: **Français** : Natif
+        - :uk: **Anglais** : Compétence professionnelle totale
+        - :es: **Espagnol** : Niveau élémentaire
+        """
+    )
+
+#### Hobbies
+
+st.divider()
+if local == EN:
+    st.header(":video_game: Hobbies", anchor="hobbie")
+else:
+    st.header(":video_game: Loisirs", anchor="hobbie")
+st.divider()
+
+if local == EN:
+    st.markdown(
+        """
+        - :musical_note: **Music enthusiast ** : (Rock, Metal, Jazz, Hip Hop, Folk…). Play guitar and bass. Learn piano.
+        - :chess_pawn: **Chess & Role-Playing Games**
+        - :man-swimming: **Sport**: Swimming, Gym
+        - :book: **Various reading**: Fantasy novels, SF
+        """
+    )
+else:
+    st.markdown(
+        """
+        - :musical_note: **Amateur de musique** : (Rock, Metal, Jazz, Hip Hop, Folk…). Joue de la guitare et de la basse. Apprentissage du piano.
+        - :chess_pawn: **Échecs & Jeux de rôle**
+        - :man-swimming: **Sport**: Natation, Gym
+        - :book: **Various reading**: Romans de fantaisie, Science Fiction
         """
     )
