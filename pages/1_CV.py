@@ -6,7 +6,7 @@ EN = "English"
 IMG = Path("./files/images")
 
 with st.sidebar.expander("**Language**"):
-    local = st.radio("Select Language / Sélectionnez la langue:", (FR, EN))
+    local = st.radio("Select Language / Sélectionnez la langue:", (EN, FR))
 
 if local == EN:
     st.sidebar.markdown(
