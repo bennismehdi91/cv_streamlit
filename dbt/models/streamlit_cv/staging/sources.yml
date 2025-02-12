@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: streamlit_cv
+    tables:
+    - name: foyers_fiscaux_raw
+      identifier: foyers_fiscaux_raw
+    - name: transactions_raw
+      identifier: transactions_raw
