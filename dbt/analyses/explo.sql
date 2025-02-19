@@ -4,5 +4,6 @@ WITH source AS (
 
 SELECT
     date_transaction,
-    FORMAT_DATE('%B %Y', date_transaction) AS date_month_year
+    FORMAT_DATE('%B %Y', date_transaction) AS date_month_year,
+    departement
 FROM source
