@@ -78,3 +78,13 @@ models:
       - name: longitude
         data_type: float64
         description: "longitude of the land plot"
+    
+  - name: stg_streamlit_cv__taux_interet_raw
+    description: "Time series of average interest rates"
+    columns:
+      - name: date
+        data_type: string
+        description: "date (year-month)"
+      - name: taux
+        data_type: float64
+        description: "loan interest rates before negotiation"
