@@ -16,6 +16,10 @@ black = "^24.4.2"
 streamlit = "^1.40.1"
 google-cloud-bigquery = "^3.27.0"
 jupyter = "^1.1.1"
+pandas-gbq = "^0.27.0"
+plotly = "^6.0.0"
+bigquery = "^0.0.45"
+tqdm = "^4.67.1"
 
 [tool.poetry.dev-dependencies]
 
