@@ -1,3 +1,5 @@
+{{ config(materialized='table') }}
+
 WITH
     dpt_overseas AS (
         SELECT * FROM {{ ref('int_dpt_2') }}

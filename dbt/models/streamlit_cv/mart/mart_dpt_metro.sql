@@ -1,3 +1,5 @@
+{{ config(materialized='table') }}
+
 WITH
     dpt_metro_metrics AS (
         SELECT * FROM {{ ref('int_dpt_2') }}
