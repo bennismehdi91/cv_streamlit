@@ -1,9 +1,9 @@
 WITH
-    dpt_metro_metrics AS (
+    dpt_overseas AS (
         SELECT * FROM {{ ref('int_dpt_2') }}
     )
     
 SELECT
     *
-FROM dpt_metro_metrics
-WHERE departement_int < 100
+FROM dpt_overseas
+WHERE departement_int > 100
