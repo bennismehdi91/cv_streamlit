@@ -9,6 +9,8 @@ source as (
 renamed as (
 
     select
+        id_transaction,
+        date_transaction,
         prix,
         departement,
         id_ville,
@@ -16,6 +18,8 @@ renamed as (
         vefa,
         n_pieces,
         surface_habitable,
+        latitude,
+        longitude,
         year,
         month
 
