@@ -7,3 +7,5 @@ sources:
       identifier: foyers_fiscaux_raw
     - name: transactions_raw
       identifier: transactions_raw
+    - name: taux_interet_raw
+      identifier: taux_interet_raw
