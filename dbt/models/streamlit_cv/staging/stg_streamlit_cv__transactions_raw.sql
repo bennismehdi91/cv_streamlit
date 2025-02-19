@@ -19,9 +19,7 @@ renamed as (
         n_pieces,
         surface_habitable,
         latitude,
-        longitude,
-        year,
-        month
+        longitude
 
     from source
 

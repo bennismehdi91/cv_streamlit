@@ -1,13 +1,8 @@
-with 
-
-source as (
-
-    select * from {{ ref('stg_streamlit_cv__transactions_raw') }}
-
+WITH source AS (
+    SELECT * FROM {{ ref('stg_streamlit_cv__transactions_raw') }}
 )
 
 SELECT
-    min(year),
-    max(year),
-FROM
-    source
+    date_transaction,
+    FORMAT_DATE('%B %Y', date_transaction) AS date_month_year
+FROM source

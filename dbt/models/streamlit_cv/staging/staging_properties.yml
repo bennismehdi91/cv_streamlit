@@ -78,11 +78,3 @@ models:
       - name: longitude
         data_type: float64
         description: "longitude of the land plot"
-
-      - name: year
-        data_type: int64
-        description: "year of the transaction"
-
-      - name: month
-        data_type: int64
-        description: "month of the transaction"
