@@ -3,6 +3,7 @@ WITH
         SELECT * FROM {{ ref('stg_streamlit_cv__transactions_raw') }}
     )
 SELECT
+    departement,
     CAST(departement AS int) AS departement_int,
     FORMAT_DATE('%Y', date_transaction) AS date_year,
     COUNT(id_transaction) as count_transaction,
