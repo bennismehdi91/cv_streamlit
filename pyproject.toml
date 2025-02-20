@@ -20,6 +20,7 @@ pandas-gbq = "^0.27.0"
 plotly = "^6.0.0"
 bigquery = "^0.0.45"
 tqdm = "^4.67.1"
+turfpy = "^0.0.8"
 
 [tool.poetry.dev-dependencies]
 
