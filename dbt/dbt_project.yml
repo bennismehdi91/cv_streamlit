@@ -1,7 +1,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: "streamlit_cv"
+name: "cv_streamlit"
 version: "1.0.0"
 config-version: 2
 
@@ -35,7 +35,7 @@ clean-targets: # directories to be removed by `dbt clean`
 
 models:
   # Be sure to namespace your model configs to your project name
-  streamlit_cv:
+  cv_streamlit:
     # This configures models found in models/staging/
     staging:
       +materialized: view
