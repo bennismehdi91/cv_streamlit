@@ -2,6 +2,7 @@ SELECT
     CONCAT(id_ville, '-', departement, "-", FORMAT_DATE('%Y', date_transaction)) AS id_city_dpt_year,
     CONCAT(id_ville,'-', departement) AS unique_city_id,
     FORMAT_DATE('%Y', date_transaction) AS date_year,
+    departement,
     COUNT(id_transaction) as count_transaction,
     SUM(CASE WHEN type_batiment = 'Maison' THEN 1 ELSE 0 END) AS count_maison,
     SUM(CASE WHEN type_batiment = 'Appartement' THEN 1 ELSE 0 END) AS count_appartement,
@@ -15,4 +16,5 @@ FROM {{ ref('stg_streamlit_cv__transactions_raw') }}
 GROUP BY 
     id_city_dpt_year,
     unique_city_id,
-    date_year
+    date_year,
+    departement
