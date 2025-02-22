@@ -18,5 +18,3 @@ SELECT
 FROM transactions t
 LEFT JOIN foyers f ON t.id_year_city = f.id_year_city
 ORDER BY departement, id_ville, date_year
-
-SELECT count(*) FROM {{ ref('int_city_snapshot_1') }} WHERE id_ville = 1 
