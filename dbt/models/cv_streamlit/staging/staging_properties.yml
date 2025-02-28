@@ -1,0 +1,109 @@
+version: 2
+
+models:
+  - name: stg_streamlit_cv__foyers_fiscaux_raw
+    description: "Time series for each city of: number of households, average revenue per housold, crude household revenue distribution"
+    columns:
+      - name: date
+        data_type: int64
+        description: "year"
+
+      - name: departement
+        data_type: string
+        description: "french department of the city"
+
+      - name: id_ville
+        data_type: int64
+        description: "id (INSEE) of the city in each department"
+
+      - name: ville
+        data_type: string
+        description: "city name"
+
+      - name: n_foyers_fiscaux
+        data_type: float64
+        description: "number of taxable households"
+
+      - name: revenu_fiscal_moyen
+        data_type: float64
+        description: "average income of households"
+
+      - name: montant_impot_moyen
+        data_type: float64
+        description: "average housholds taxe amount"
+
+  - name: stg_streamlit_cv__transactions_raw
+    description: "History of transactions in France, from 2014 to 2024"
+    columns:
+      - name: id_transaction
+        data_type: int64
+        description: "transaction id"
+
+      - name: date_transaction
+        data_type: datetime
+        description: "date of signature of the transaction. The loan will likely have been obtained at an earlyer date."
+
+      - name: prix
+        data_type: float64
+        description: "transaction price - without notary fees (~5-8%) and without real estate agency fees (~3-10%)"
+
+      - name: departement
+        data_type: string
+        description: "department"
+
+      - name: id_ville
+        data_type: int64
+        description: "city id in a given department"
+
+      - name: type_batiment
+        data_type: string
+        description: "housing type (appartment or house)"
+
+      - name: vefa
+        data_type: boolean
+        description: "off plan sale"
+
+      - name: n_pieces
+        data_type: int64
+        description: "number of rooms (without water closets and kitchens)"
+
+      - name: surface_habitable
+        data_type: int64
+        description: "housing surface in m²"
+
+      - name: latitude
+        data_type: float64
+        description: "latitude of the land plot"
+
+      - name: longitude
+        data_type: float64
+        description: "longitude of the land plot"
+    
+  - name: stg_streamlit_cv__taux_interet_raw
+    description: "Time series of average interest rates"
+    columns:
+      - name: date
+        data_type: string
+        description: "date (year-month)"
+      - name: taux
+        data_type: float64
+        description: "loan interest rates before negotiation"
+
+  - name: stg_streamlit_cv__dpt_regions_raw
+    description: "Table to link french department to regions"
+    columns:
+      - name: num_dep
+        data_type: int64
+        description: "Department number"
+
+      - name: dep_name
+        data_type: string
+        description: "Department name"
+
+      - name: region_name
+        data_type: string
+        description: "Region name"
+
+      - name: code_region
+        data_type: int64
+        description: "Region code based on France GeoJSON (https://france-geojson.gregoiredavid.fr/)"

@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: streamlit_cv
+    tables:
+    - name: foyers_fiscaux_raw
+      identifier: foyers_fiscaux_raw
+    - name: transactions_raw
+      identifier: transactions_raw
+    - name: taux_interet_raw
+      identifier: taux_interet_raw
+    - name: dpt_regions_raw
+      identifier: dpt_regions_raw
