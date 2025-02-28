@@ -4,7 +4,7 @@ st.set_page_config(
     page_title=None,
     page_icon=None,
     layout="centered",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="auto",
     menu_items=None,
 )
 
@@ -34,9 +34,12 @@ if local == FR:
 
         <span style="font-size: 20px;">L'ensemble du code pour ce projet est accessible sur GitHub : https://github.com/bennismehdi91/cv_streamlit
         Si vous avez des retours, n'hésitez pas à m'en faire part directement par email : bennismehdi91@gmail.com</span>
+
+        <span style="font-size: 14px;"><em>Si vous êtes sur mobile, cliquez sur la flêche en haut à gauche de la page pour ouvrir le menu.</em></span>
         """,
         unsafe_allow_html=True,
     )
+    st.image("./files/images/arrow.png")
 else:
     st.markdown(
         """
@@ -52,6 +55,8 @@ else:
 
         <span style="font-size: 20px;">The full code for this project is available on GitHub: https://github.com/bennismehdi91/cv_streamlit.
         If you have any feedback, feel free to reach out to me directly via email: bennismehdi91@gmail.com</span>
+
+        <span style="font-size: 14px;"><em>If you are on mobile, click on the arrow at the top left of the page to open the menu.</em></span>
         """,
         unsafe_allow_html=True,
     )
