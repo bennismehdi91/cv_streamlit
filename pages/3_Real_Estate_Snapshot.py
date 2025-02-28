@@ -633,9 +633,7 @@ if st.session_state.snapshot_generated:
 
     # # Create a PowerPoint presentation
 
-    prs = Presentation(
-        "/home/mehdibennis/projects/cv_streamlit/files/ppt_template/CitySnapshot_template.pptx"
-    )
+    prs = Presentation("./files/ppt_template/CitySnapshot_template.pptx")
 
     ### SLIDE 1 - MAP
 
