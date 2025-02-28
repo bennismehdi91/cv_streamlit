@@ -24,7 +24,7 @@ if local == FR:
         """
         # Portfolio - Mehdi Bennis
 
-        ### Bienvenue sur mon Portfolio<&nbsp;>!
+        ### Bienvenue sur mon Portfolio
 
         <span style="font-size: 20px;"> Après plus de 10 ans à travailler en tant que Customer Success Manager dans des entreprises de SaaS (Vision Critical, Alida, EasyPicky), j'ai décidé de me réorienter en Data Analyse. J'ai pour cela effectué le <a href="https://www.lewagon.com/fr/data-analytics-course" target="_blank">Bootcamp Data Analytics du Wagon </a> et je recherche actuellement un nouveau poste !</span>
         
