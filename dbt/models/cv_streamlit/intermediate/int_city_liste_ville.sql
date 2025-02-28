@@ -21,6 +21,7 @@ SELECT
     unique_city_id,
     cleaned_ville,
     departement,
+    CONCAT(cleaned_ville,' (', departement, ')') AS formated_cleaned_ville,
     count_ville_name,
     ROW_NUMBER() OVER (PARTITION BY unique_city_id ORDER BY count_ville_name DESC) AS rn
 FROM count_table
