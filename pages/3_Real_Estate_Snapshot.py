@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 from shapely.geometry import Point
 import geopandas as gpd
 import contextily as ctx
+import pandas_gbq
+from google.oauth2 import service_account
 
 FR = "Français"
 EN = "English"
@@ -116,12 +118,16 @@ dict_translation = {
         EN: "Filter next charts by building type",
     },
     "house_filter": {
-        FR: ":house: Maison",
-        EN: ":house: House",
+        FR: "Maison",
+        EN: "House",
     },
     "flat_filter": {
-        FR: ":office: Appartement",
-        EN: ":office: Flat",
+        FR: "Appartement",
+        EN: "Flat",
+    },
+    "dl_ppt": {
+        FR: ":bar_chart: Télécharger le PowerPoint",
+        EN: ":bar_chart: Download PowerPoint",
     },
 }
 
@@ -241,11 +247,6 @@ if st.button(dict_translation["generate_snapshot"][local]):
         lat, lon = st.session_state.last_location  # Selected location from map
 
         # Load city data
-        df_villes = pd.read_csv(
-            "/home/mehdibennis/projects/cv_streamlit/files/data/PrixImmobilier/plotly/liste_ville.csv"
-        )
-        cities = df_villes[["unique_city_id", "formated_cleaned_ville"]]
-
         def get_square_coordinates(lat, lon, radius_meters):
             earth_radius = 6378137.0
 
@@ -266,28 +267,44 @@ if st.button(dict_translation["generate_snapshot"][local]):
 
         # SQL Query
         sql_query = f"""
-        SELECT * FROM table_name 
+        SELECT * FROM dbt_mbennis.mart_city_snapshot 
         WHERE latitude BETWEEN {min_lat} AND {max_lat}
-        AND longitude BETWEEN {min_lon} AND {max_lon};
+        AND longitude BETWEEN {min_lon} AND {max_lon}
+        ORDER BY date_year;
         """
 
+        def get_data(
+            sql: str, project_id: str, credentials: service_account.Credentials
+        ) -> pd.DataFrame:
+            df = pandas_gbq.read_gbq(
+                sql, project_id=project_id, credentials=credentials
+            )
+            return df
+
+        #### Load credentials from Streamlit secrets
+        credentials_dict = dict(st.secrets["bigquery"])
+        credentials = service_account.Credentials.from_service_account_info(
+            credentials_dict
+        )
+        project_id = "mimetic-surfer-402208"
+
+        df_transac_snapshot = get_data(sql_query, project_id, credentials)
+
+        df_transac_snapshot["date_year"] = df_transac_snapshot["date_year"].astype(int)
+
         # TEST DATA WHILE DESIGNING, TO BE REPLACE BY SQL QUERY
-        df_transac_snapshot = pd.read_csv(
-            "/home/mehdibennis/projects/cv_streamlit/files/data/PrixImmobilier/plotly/dbt_analyses_explo.csv"
-        )
+        # df_transac_snapshot_test = pd.read_csv(
+        #     "/home/mehdibennis/projects/cv_streamlit/files/data/PrixImmobilier/plotly/dbt_analyses_explo.csv"
+        # )
 
-        df_transac_snapshot = df_transac_snapshot[
-            (df_transac_snapshot["latitude"].between(min_lat, max_lat))
-            & (df_transac_snapshot["longitude"].between(min_lon, max_lon))
-        ]
-
-        df_transac_snapshot = df_transac_snapshot.merge(
-            cities, on="unique_city_id", how="left"
-        )
+        # df_transac_snapshot = df_transac_snapshot[
+        #     (df_transac_snapshot["latitude"].between(min_lat, max_lat))
+        #     & (df_transac_snapshot["longitude"].between(min_lon, max_lon))
+        # ]
 
         type_batiment_counts = df_transac_snapshot["type_batiment"].value_counts()
         vefa_counts = df_transac_snapshot["vefa"].value_counts()
-        print(type_batiment_counts)
+
         tcd_transac_total = pd.pivot_table(
             df_transac_snapshot,
             index="date_year",
@@ -318,8 +335,6 @@ if st.button(dict_translation["generate_snapshot"][local]):
             },
             fill_value=0,
         )
-        print(tcd_transac_type_batiment)
-        print(tcd_transac_type_batiment["id_transaction"]["Maison"])
 
         # Ensure 'date_year' is sorted and unique
         all_years = df_transac_snapshot["date_year"].unique()
@@ -405,6 +420,7 @@ if st.session_state.snapshot_generated:
             )
         return 0
 
+    # nb_sales = safe_get_value_total(tcd_transac_total, "id_transaction", year)
     nb_sales = safe_get_value_total(tcd_transac_total, "id_transaction", year)
     avg_price = safe_get_value_total(tcd_transac_total, "prix", year)
     avg_price_squaredmetter = safe_get_value_total(
@@ -457,6 +473,18 @@ if st.session_state.snapshot_generated:
             """,
             unsafe_allow_html=True,
         )
+
+    st.markdown(
+        """
+            <style>
+            [data-testid="stMetricValue"] {
+                font-size: 32px;
+            }
+            </style>
+            """,
+        unsafe_allow_html=True,
+    )
+
     st.write("##### Total")
     col1, col2, col3 = st.columns(3)
     col1.metric(dict_translation["total_sales"][local], nb_sales, border=True)
@@ -524,10 +552,15 @@ if st.session_state.snapshot_generated:
     radio = st.radio(
         dict_translation["filter_building"][local],
         (
-            dict_translation["house_filter"][local],
-            dict_translation["flat_filter"][local],
+            ":house: " + dict_translation["house_filter"][local],
+            ":office: " + dict_translation["flat_filter"][local],
         ),
     )
+
+    if radio == ":house: " + dict_translation["house_filter"][local]:
+        chart_title = dict_translation["house_filter"][local]
+    else:
+        chart_title = dict_translation["flat_filter"][local]
 
     df_fitlered_plotly = df_grouped_plotly[
         df_grouped_plotly["type_batiment"] == revers_dict[radio]
@@ -540,7 +573,7 @@ if st.session_state.snapshot_generated:
     fig2.update_layout(
         yaxis_title=dict_translation["total_sales"][local],
         xaxis_title=dict_translation["year"][local],
-        title=dict_translation["total_sales"][local],
+        title=chart_title + " : " + dict_translation["total_sales"][local],
     )
     fig2.update_traces(line=dict(color="red"), textposition="top center")
 
@@ -552,7 +585,7 @@ if st.session_state.snapshot_generated:
     fig3.update_layout(
         yaxis_title=dict_translation["avg_price"][local],
         xaxis_title=dict_translation["year"][local],
-        title=dict_translation["avg_price"][local],
+        title=chart_title + " : " + dict_translation["avg_price"][local],
     )
 
     st.plotly_chart(fig3)
@@ -568,16 +601,23 @@ if st.session_state.snapshot_generated:
     fig4.update_layout(
         yaxis_title=dict_translation["avg_price_squaremetter"][local],
         xaxis_title=dict_translation["year"][local],
-        title=dict_translation["avg_price_squaremetter"][local],
+        title=chart_title + " : " + dict_translation["avg_price_squaremetter"][local],
     )
 
     st.plotly_chart(fig4)
 
-    st.write("### Téléchargement PowerPoint")
+    if local == FR:
+        st.write("### Téléchargement PowerPoint")
 
-    st.markdown(
-        "Cliquez sur le bouton ci-dessous pour télécharger le snapshot au format PowerPoint."
-    )
+        st.markdown(
+            "Cliquez sur le bouton ci-dessous pour télécharger le snapshot au format PowerPoint."
+        )
+    else:
+        st.write("### PowerPoint Download")
+
+        st.markdown(
+            "Click on the button below to download the snapshot in PowerPoint format."
+        )
 
     from pptx import Presentation
     from io import BytesIO
@@ -927,7 +967,7 @@ if st.session_state.snapshot_generated:
     # Create a download button
 
     st.download_button(
-        label="Download PowerPoint",
+        label=dict_translation["dl_ppt"][local],
         data=ppt_buffer,
         file_name="real_estate_stapshot.pptx",
         mime="application/vnd.openxmlformats-officedocument.presentationml.presentation",

@@ -44,26 +44,34 @@ else:
 ###### DATA
 
 #### Load credentials from Streamlit secrets
-# credentials_dict = dict(st.secrets["bigquery"])
-# credentials = service_account.Credentials.from_service_account_info(credentials_dict)
+credentials_dict = dict(st.secrets["bigquery"])
+credentials = service_account.Credentials.from_service_account_info(credentials_dict)
+project_id = "mimetic-surfer-402208"
 
 #### SQL requests
-# sql = """
-# SELECT * FROM dbt_mbennis.mart_dpt_overseas
-# """
 
-# df = pandas_gbq.read_gbq(
-#     sql, project_id="mimetic-surfer-402208", credentials=credentials
-# )
+sql_france = """
+SELECT * FROM dbt_mbennis.mart_france ORDER BY date_year_month
+"""
 
-france_df = pd.read_csv(
-    "/home/mehdibennis/projects/cv_streamlit/files/data/PrixImmobilier/plotly/dbt_models_streamlit_cv_mart_mart_france.csv"
-)
+sql_dpt = """
+SELECT * FROM dbt_mbennis.mart_dpt ORDER BY date_year
+"""
 
-dpt_df = pd.read_csv(
-    "/home/mehdibennis/projects/cv_streamlit/files/data/PrixImmobilier/plotly/dbt_models_cv_streamlit_mart_mart_dpt2.csv",
-    dtype={"departement": str},
-)
+
+@st.cache_data
+def get_data(
+    sql: str, project_id: str, _credentials: service_account.Credentials
+) -> pd.DataFrame:
+    df = pandas_gbq.read_gbq(sql, project_id=project_id, credentials=_credentials)
+    return df
+
+
+france_df = get_data(sql_france, project_id, credentials)
+dpt_df = get_data(sql_dpt, project_id, credentials)
+
+dpt_df["departement"] = dpt_df["departement"].astype(str)
+
 
 ##### BODY
 ### INTRODUCTION
