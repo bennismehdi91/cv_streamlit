@@ -24,13 +24,13 @@ if local == FR:
         """
         # Portfolio - Mehdi Bennis
 
-        ### Bienvenue sur mon Portfolio !
+        ### Bienvenue sur mon Portfolio<&nbsp;>!
 
         <span style="font-size: 20px;"> Après plus de 10 ans à travailler en tant que Customer Success Manager dans des entreprises de SaaS (Vision Critical, Alida, EasyPicky), j'ai décidé de me réorienter en Data Analyse. J'ai pour cela effectué le <a href="https://www.lewagon.com/fr/data-analytics-course" target="_blank">Bootcamp Data Analytics du Wagon </a> et je recherche actuellement un nouveau poste !</span>
         
         <span style="font-size: 20px;">Cette formation m'a permis de confirmer et développer des compétences techniques en lien avec la data analyse : transformation de données, automatisation et requêtes API, exploration en Python et SQL, machine learning, et data visualisation (Apache Superset, Looker, PowerBI).</span>
 
-        <span style="font-size: 20px;">Enfin, j'ai décidé de mettre en ligne mon CV et quelques projets de data analyse en ligne, pour vous donner une idée de mes compétences. Vous pouvez accéder aux différentes pages sur l'onglet à gauche de la page.</span>
+        <span style="font-size: 20px;">Enfin, j'ai décidé de mettre en ligne mon CV et quelques projets de data analyse en ligne, pour vous donner une idée de mes compétences. <b>Vous pouvez accéder aux différentes pages sur l'onglet à gauche de la page.</b></span>
 
         <span style="font-size: 20px;">L'ensemble du code pour ce projet est accessible sur GitHub : https://github.com/bennismehdi91/cv_streamlit
         Si vous avez des retours, n'hésitez pas à m'en faire part directement par email : bennismehdi91@gmail.com</span>
