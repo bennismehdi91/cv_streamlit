@@ -39,7 +39,6 @@ if local == FR:
         """,
         unsafe_allow_html=True,
     )
-    st.image("./files/images/arrow.png")
 else:
     st.markdown(
         """
