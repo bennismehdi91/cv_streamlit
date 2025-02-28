@@ -4,6 +4,7 @@ name = "Streamlit CV"
 version = "0.1.0"
 description = "Streamlit CV and Portfolio"
 license = ""  # You can replace this with your chosen license
+package-mode = false
 
 # Authors and maintainers (optional)
 authors = ["Mehdi Bennis <bennismehdi91@gmail.com>"]
