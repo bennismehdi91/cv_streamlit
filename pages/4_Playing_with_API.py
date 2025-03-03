@@ -3,6 +3,14 @@ import pandas as pd
 import requests
 import json
 
+st.set_page_config(
+    page_title="Playing with API",
+    page_icon=None,
+    layout="centered",
+    initial_sidebar_state="auto",
+    menu_items=None,
+)
+
 FR = "Français"
 EN = "English"
 

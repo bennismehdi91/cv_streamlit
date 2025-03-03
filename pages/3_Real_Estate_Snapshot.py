@@ -12,6 +12,14 @@ import contextily as ctx
 import pandas_gbq
 from google.oauth2 import service_account
 
+st.set_page_config(
+    page_title="Real Estate Snapshot",
+    page_icon=None,
+    layout="centered",
+    initial_sidebar_state="auto",
+    menu_items=None,
+)
+
 FR = "Français"
 EN = "English"
 

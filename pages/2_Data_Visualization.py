@@ -9,6 +9,14 @@ import requests
 from turfpy.measurement import bbox
 from functools import reduce
 
+st.set_page_config(
+    page_title="Data Visualization",
+    page_icon=None,
+    layout="centered",
+    initial_sidebar_state="auto",
+    menu_items=None,
+)
+
 FR = "Français"
 EN = "English"
 

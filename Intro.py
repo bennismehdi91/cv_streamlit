@@ -5,7 +5,7 @@ test to add something to main
 import streamlit as st
 
 st.set_page_config(
-    page_title=None,
+    page_title="Introduction",
     page_icon=None,
     layout="centered",
     initial_sidebar_state="auto",

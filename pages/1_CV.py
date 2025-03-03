@@ -1,6 +1,14 @@
 import streamlit as st
 from pathlib import Path
 
+st.set_page_config(
+    page_title="CV",
+    page_icon=None,
+    layout="centered",
+    initial_sidebar_state="auto",
+    menu_items=None,
+)
+
 FR = "Français"
 EN = "English"
 IMG = Path("./files/images")
