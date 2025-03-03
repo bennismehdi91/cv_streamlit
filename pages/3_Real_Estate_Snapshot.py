@@ -25,27 +25,27 @@ st.write("## Introduction")
 if local == EN:
     st.markdown(
         """
-        Part of data analysis also involves transforming data and returning it to business teams in a clean and efficient way, so that they can accomplish their missions.
+        Part of data analysis also involves transforming data and returning it to business teams in a clean and efficient way, so that they can accomplish their missions. It's what we call <b>Reverse ETL</b>.
 
-        In this example, we developed an app for real estate agents. With this app, agents can choose a location and obtain information on real estate in an area they define.
+        In this example, we developed an app for real estate agents. With this app, agents can choose a location in France and obtain real estate information within a radius they define.
 
-        A button at the bottom of the page allows agents to download the data as a PowerPoint file.
+        A button at the bottom of the page allows agents to download data in PowerPoint format, for offline access to information.
         """,
         unsafe_allow_html=True,
     )
 else:
     st.markdown(
         """
-        Une partie de la data analyse consiste également à transformer les données et à les restituer aux équipes métier d'une manière propre et efficace, afin qu'elles puissent accomplir leurs missions.
+        Une partie de la data analyse consiste également à transformer les données et à les restituer aux équipes métier d'une manière propre et efficace, afin qu'elles puissent accomplir leurs missions. C'est ce qu'on appelle le <b>Reverse ETL</b>.
 
-        Dans cet exemple, nous avons développé une app pour des agents immobilier. Avec cette app, les agents peuvent choisir une localisation et obtenir les informations sur l'immobilier dans une zone qu'ils définissent.
+        Dans cet exemple, nous avons développé une app pour des agents immobilier. Avec cette app, les agents peuvent choisir une localisation en France et obtenir les informations sur l'immobilier dans un rayon qu'ils définissent.
 
-        Un bouton en bas de page permet aux agents de télécharger les données en PowerPoint.
+        Un bouton en bas de page permet aux agents de télécharger les données en PowerPoint, afin d'accéder aux informations hors ligne.
         """,
         unsafe_allow_html=True,
     )
 
-
+st.divider()
 dict_translation = {
     "map_search": {
         FR: "Saisissez une adresse ou un lieu :",
@@ -129,6 +129,10 @@ dict_translation = {
         FR: ":bar_chart: Télécharger le PowerPoint",
         EN: ":bar_chart: Download PowerPoint",
     },
+    "mono_list_city": {
+        FR: ":bar_chart: Télécharger le PowerPoint",
+        EN: ":bar_chart: Download PowerPoint",
+    },
 }
 
 revers_dict = {
@@ -158,7 +162,7 @@ if local == FR:
         """
                 Vous pouvez indiquer le nom d'une ville, ou une adresse dans la barre de recherche ci-dessous.<br>
                 Si vous le souhaitez, vous pouvez zoomer et cliquer directement sur la carte pour placer le curseur.<br>
-                Enfin, utilisez le slider pour définir la zone de recherche autour du curseur (en mètres)<br>
+                Enfin, utilisez le slider pour définir le rayon la zone de recherche autour du curseur (en mètres)<br>
                 """,
         unsafe_allow_html=True,
     )
@@ -168,7 +172,7 @@ else:
         """
                 You can enter a city name or address in the search bar below.<br>
                 If you wish, you can zoom in and click directly on the map to place the cursor.<br>
-                Finally, use the slider to define the search zone around the cursor (in meters).<br>
+                Finally, use the slider to define the radius of the search zone around the cursor (in meters).<br>
                 """,
         unsafe_allow_html=True,
     )
@@ -382,6 +386,7 @@ if st.button(dict_translation["generate_snapshot"][local]):
         # Store results in session state
         st.session_state.snapshot_generated = True
         st.session_state.formatted_list_cities = formatted_list_cities
+        st.session_state.list_cities = list_cities
         st.session_state.type_batiment_counts = type_batiment_counts
         st.session_state.vefa_counts = vefa_counts
         st.session_state.tcd_transac_total = tcd_transac_total
@@ -398,6 +403,7 @@ if st.session_state.snapshot_generated:
     tcd_transac_total = st.session_state.tcd_transac_total
     tcd_transac_type_batiment = st.session_state.tcd_transac_type_batiment
     df_grouped_plotly = st.session_state.df_grouped_plotly
+    list_cities = st.session_state.list_cities
 
     st.write(dict_translation["snapshot_year"][local])
 
@@ -456,23 +462,29 @@ if st.session_state.snapshot_generated:
         tcd_transac_type_batiment, "surface_habitable", "Appartement", year
     )
 
-    if local == FR:
-        st.write(f"#### Vue d'ensemble en {year}")
-        st.markdown(
-            f"""
+    dico_list_ville = {
+        "mono": {
+            FR: f"""
+            Les ventes ont eu lieu dans la ville suivante :<b> {formatted_list_cities}</b> en <b>{year}</b>.
+            """,
+            EN: f"""
+            Sales were located in this city : <b>{formatted_list_cities}</b> in <b>{year}</b>.
+            """,
+        },
+        "multi": {
+            FR: f"""
             Les ventes ont eu lieu dans les villes suivantes :<b> {formatted_list_cities}</b> en <b>{year}</b>.
             """,
-            unsafe_allow_html=True,
-        )
-
-    else:
-        st.write(f"#### Overview in {year}")
-        st.markdown(
-            f"""
+            EN: f"""
             Sales were located in theses cities : <b>{formatted_list_cities}</b> in <b>{year}</b>.
             """,
-            unsafe_allow_html=True,
-        )
+        },
+    }
+
+    if len(list_cities) > 1:
+        st.write(dico_list_ville["multi"][local], unsafe_allow_html=True)
+    else:
+        st.write(dico_list_ville["mono"][local], unsafe_allow_html=True)
 
     st.markdown(
         """

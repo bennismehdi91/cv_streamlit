@@ -92,7 +92,7 @@ if local == EN:
         
         Once the right tables were aggreagated, I get the data using the google.oauth2 and pandas_bgq libraries, and I display them on this streamlit using plotly.
 
-        Note: The dataset lacks data for Corsica and Mayotte.
+        <em>Note: The dataset lacks data for Corsica and Mayotte.</em>
         """,
         unsafe_allow_html=True,
     )
@@ -105,7 +105,7 @@ else:
 
         Une fois les données aggrégées, je récupère les tables finalisées sur ce streamlit via une connexion google.oauth2 et la librairie pandas_bgq. Les données sont ensuite présentées via des graphiques plotly.
 
-        Note: Le dataset ne contient pas de données pour la Corse et Mayotte.
+        <em>Note : Le dataset ne contient pas de données pour la Corse et Mayotte.</em>
         """,
         unsafe_allow_html=True,
     )
@@ -256,12 +256,12 @@ else:
 
 if local == EN:
     st.markdown(
-        "<em>Note: The year 2024 is not complete, and stopes in July<br>Double click on the map to reset the view</em>",
+        "<em>Note: The year 2024 is not complete, and stopes in July, which explains the drop in indicators <br>Double click on the map to reset the view</em>",
         unsafe_allow_html=True,
     )
 else:
     st.markdown(
-        "<em>Note : L'année 2024 est incomplète, et s'arrête en juillet<br>Double cliquez sur la carte pour réinitialiser la carte</em>",
+        "<em>Note : L'année 2024 est incomplète, et s'arrête en juillet, ce qui explique la baisse des indicateurs.<br>Double cliquez sur la carte pour réinitialiser la carte</em>",
         unsafe_allow_html=True,
     )
 

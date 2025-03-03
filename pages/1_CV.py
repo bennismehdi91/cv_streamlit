@@ -69,7 +69,7 @@ with col2:
         st.markdown("**Téléphone :** +33 (0)6 95 38 14 40")
         st.markdown("**Email :** bennismehdi91@gmail.com")
         st.markdown("**Adresse :** 4 rue Guillaume de Nogaret, 34070, Montpellier")
-        st.markdown("**Nationalité :** Français")
+        st.markdown("**Nationalité :** Française")
         st.markdown("**LinkedIn :** www.linkedin.com/in/mehdibennis")
         st.markdown(
             "**Points forts :** Analytique, agile, flexible, créatif et sociable."
@@ -102,7 +102,7 @@ if local == EN:
     st.markdown(
         """
     - Responsible for managing EasyPicky customer accounts.
-    - Introduced Customer Success best practices at EasyPicky: quarterly account reviews,
+    - Introduced Customer Success best practices: quarterly account reviews,
     satisfaction surveys, user roundtables.
     - Drafted new KPIs to track account success based on users’ data, from data gathering to analysis.
     - Worked closely with developers to improve EasyPicky’s solution based on customer and
@@ -114,7 +114,7 @@ else:
         """
     - Responsable de la gestion des comptes clients d'EasyPicky.
     - Introduction de meilleures pratiques Customer Success : bilans trimestriels des comptes, enquêtes de satisfaction, tables rondes avec les utilisateurs.
-    - Rédaction de nouveaux KPI pour suivre le succès des comptes en se basant sur les données des utilisateurs, de la compilation des données brutes à l'analyse des résultats.
+    - Création de nouveaux KPI pour suivre le succès des comptes en se basant sur les données des utilisateurs : de la compilation des données brutes à l'analyse des résultats.
     - Collaboration étroite avec les développeurs pour améliorer la solution EasyPicky en se basant sur les retours clients et utilisateurs.
 """
     )
@@ -140,19 +140,19 @@ if local == EN:
     - Maps the prospect’s business and technology needs to Alida's solutions and helps validate key use cases
     - Provides solution expertise through product demonstrations and technical consultation
     - Identifies opportunities for data integrations to enhance platform value and user adoption
-    - Works collaboratively with Product Management and Product Marketing during the development, launch, and refinement of Alida products
-    - Tech Product webinar host to prospects and customers
+    - Works collaboratively with Product Management and Product Marketing during the development, launch, and refinement of Alida solutions
+    - Conducting Tech Product webinar for prospects and customers
     """
     )
 else:
     st.markdown(
         """
-    - Collaboration avec les équipes de vente pour identifier les objectifs stratégiques du client et les opportunités CX.
+    - Collaboration avec les équipes commerciales pour identifier les objectifs stratégiques du client et les opportunités CX.
     - Cartographier les besoins commerciaux et technologiques du prospect avec les solutions d'Alida et aider à valider les cas d'utilisation clés.
-    - Fournir une expertise en matière de solutions par le biais de démonstrations de produits et de consultations techniques.
-    - Identification les opportunités d'intégration de données afin d'améliorer la valeur de la plateforme et l'adoption par les utilisateurs.
-    - Travail en collaboration avec le Product Management et le Product Marketing pendant le développement, le lancement et l'amélioration des produits Alida.
-    - Animation de webinaire sur les produits Alida à destination des prospects et clients.
+    - Fournir une expertise des solutions Alida par le biais de démos produits et de consultations techniques.
+    - Identification des opportunités d'intégration de données clients afin d'optimiser l'utilisation de la plateforme et renforcer l'adoption des clients.
+    - Travail en collaboration avec les équipes Product Management et Product Marketing pendant le développement, le lancement et l'amélioration des solutions Alida.
+    - Animation de webinaire sur les produits Alida à destination des prospects et clients (live & enregistrés)
     """
     )
 
@@ -176,15 +176,15 @@ st.markdown("Montpellier (full remote), 2017-09 / 2021-01")
 if local == EN:
     st.markdown(
         """
-    - Responsible for managing 14 accounts across various verticals (insurance, utilities, retail, media, FMCG, charities. . . ) and focused on opportunities to develop them. Management of junior team workers.
+    - Responsible for managing 14 accounts across various verticals (insurance, utilities, retail, media, FMCG, charities. . . ) and focused on opportunities to develop them. Management of junior collaborators.
     - **Product Champion:** In charge of gathering client feedbacks in order to improve our software, managing EAP and showcasing new features to customers.
     """
     )
 else:
     st.markdown(
         """
-    - Responsable de la gestion de 14 comptes dans divers secteurs (assurance, services publics, retail, médias, produits de grande consommation, organisations caritatives...) et des possibilités de les développer. Gestion d'une équipe de collaborateurs juniors.
-    - **Product Champion:** Chargé de recueillir les feedback clients afin d'améliorer notre logiciel, de gérer l'adoption de nouvelles fonctionnalités et de présenter les nouvelles fonctionnalités aux clients.
+    - Responsable de la gestion de 14 comptes dans divers secteurs (assurance, services publics, retail, médias, produits de grande consommation, organisations caritatives...) et des possibilités de les développer. Management de collaborateurs juniors.
+    - **Product Champion :** Chargé de recueillir les feedback clients afin d'améliorer nos solutions, de gérer l'adoption de nouvelles fonctionnalités et de présenter les innovations aux clients.
     """
     )
 
@@ -236,9 +236,19 @@ with col1:
     )  ### use_container_width=True)
 with col2:
     if local == EN:
-        st.markdown("- Data Analytics Bootcamp, Le Wagon, 2024")
+        st.markdown(
+            """
+                    - Data Analytics Bootcamp, Le Wagon, 2024
+                    - RNCP Certification “Designer Developer in Artificial Intelligence and Big Data Analysis, Data Analysis option”
+                    """
+        )
     else:
-        st.markdown("- Data Analytics Bootcamp, Le Wagon, 2024")
+        st.markdown(
+            """
+                    - Data Analytics Bootcamp, Le Wagon, 2024
+                    - Certification RNCP "Concepteur Développeur en Intelligence Artificielle et Analyse Big Data, option Data Analyse"
+                    """
+        )
 
 col1, col2 = st.columns([2, 15], vertical_alignment="center")
 with col1:
@@ -324,7 +334,7 @@ st.divider()
 if local == EN:
     st.markdown(
         """
-        - **Python**, specialization in data analytics : Pandas, Scikit Learn, Plotly, Matplotlib, Seaborn, python-pptx, Streamlit, requests, poetry
+        - **Python**, specialization in data analytics : Pandas, Scikit Learn, Plotly, Matplotlib, Seaborn, python-pptx, Streamlit, requests, poetry...
         - Advanced knowledge in **SQL**, worked on MySQL, Google BigQuery.
         - **Dataviz** : Looker, PowerBI, Apache Superset
         - **Automation** : Fivetran, Zapier, Airflow
@@ -335,7 +345,7 @@ if local == EN:
 else:
     st.markdown(
         """
-        - **Python**, spécialisation en analyse de données : Pandas, Scikit Learn, Plotly, Matplotlib, Seaborn, python-pptx, Streamlit, requests, poetry.
+        - **Python**, spécialisation en analyse de données : Pandas, Scikit Learn, Plotly, Matplotlib, Seaborn, python-pptx, Streamlit, requests, poetry...
         - Connaissance avancée du langage **SQL**, travail sur MySQL, Google BigQuery.
         - **Data visualisation** : Looker, PowerBI, Apache Superset
         - **Automatisation** : Fivetran, Zapier, Airflow
@@ -383,7 +393,7 @@ st.divider()
 if local == EN:
     st.markdown(
         """
-        - :musical_note: **Music enthusiast ** : (Rock, Metal, Jazz, Hip Hop, Folk…). Play guitar and bass. Learn piano.
+        - :musical_note: **Music enthusiast** : (Rock, Metal, Jazz, Hip Hop, Folk…). Play guitar and bass. Learn piano.
         - :chess_pawn: **Chess & Role-Playing Games**
         - :man-swimming: **Sport**: Swimming, Gym
         - :book: **Various reading**: Fantasy novels, SF
@@ -394,7 +404,7 @@ else:
         """
         - :musical_note: **Amateur de musique** : (Rock, Metal, Jazz, Hip Hop, Folk…). Joue de la guitare et de la basse. Apprentissage du piano.
         - :chess_pawn: **Échecs & Jeux de rôle**
-        - :man-swimming: **Sport**: Natation, Gym
-        - :book: **Various reading**: Romans de fantaisie, Science Fiction
+        - :man-swimming: **Sport** : Natation, Gym
+        - :book: **Lectures diverses** : Romans de fantaisie, Science Fiction
         """
     )
