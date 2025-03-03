@@ -15,8 +15,21 @@ from google.oauth2 import service_account
 FR = "Français"
 EN = "English"
 
+if "local" not in st.session_state:
+    st.session_state.local = FR  # Default local
+
+# Sidebar Local Selection
 with st.sidebar.expander("**Language**"):
-    local = st.radio("Select Language / Sélectionnez la langue:", (FR, EN))
+    local = st.radio(
+        "Select language / Sélectionnez la langue:",
+        (FR, EN),
+        index=0 if st.session_state.local == FR else 1,
+    )
+
+# Update session state when a new local is selected
+if local != st.session_state.local:
+    st.session_state.local = local
+
 
 st.write("# Real Estate Snapshot - Reverse ETL")
 
