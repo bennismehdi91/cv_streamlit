@@ -766,7 +766,7 @@ if st.session_state.snapshot_generated:
             },
             {
                 "metric": dict_translation["avg_surface"][local],
-                "score": f"{house_avg_surface_habitable}€",
+                "score": f"{house_avg_surface_habitable}m²",
             },
             ### Line 3
             {"metric": dict_translation["total_sales"][local], "score": flat_nb_sales},
@@ -780,7 +780,7 @@ if st.session_state.snapshot_generated:
             },
             {
                 "metric": dict_translation["avg_surface"][local],
-                "score": f"{flat_avg_surface_habitable}€",
+                "score": f"{flat_avg_surface_habitable}m²",
             },
         ],
         EN: [
@@ -802,7 +802,7 @@ if st.session_state.snapshot_generated:
             },
             {
                 "metric": dict_translation["avg_surface"][local],
-                "score": f"{house_avg_surface_habitable}€",
+                "score": f"{house_avg_surface_habitable}m²",
             },
             ### Line 3
             {"metric": dict_translation["total_sales"][local], "score": flat_nb_sales},
@@ -816,7 +816,7 @@ if st.session_state.snapshot_generated:
             },
             {
                 "metric": dict_translation["avg_surface"][local],
-                "score": f"{flat_avg_surface_habitable}€",
+                "score": f"{flat_avg_surface_habitable}m²",
             },
         ],
     }
@@ -874,7 +874,9 @@ if st.session_state.snapshot_generated:
     shape = slide.shapes.add_shape(1, x, y, cx, cy)  # Rectangle shape
     shape.fill.solid()
     shape.fill.fore_color.rgb = RGBColor(255, 255, 255)
-    shape.line.fill.background()
+
+    shape.line.color.rgb = RGBColor(130, 199, 165)  # Border color
+    shape.line.width = Inches(0.05)
 
     # Define chart data
     chart_data = CategoryChartData()
@@ -894,7 +896,9 @@ if st.session_state.snapshot_generated:
     shape = slide.shapes.add_shape(1, x, y, cx, cy)  # Rectangle shape
     shape.fill.solid()
     shape.fill.fore_color.rgb = RGBColor(255, 255, 255)
-    shape.line.fill.background()
+
+    shape.line.color.rgb = RGBColor(130, 199, 165)  # Border color
+    shape.line.width = Inches(0.05)
 
     # Define chart data
     chart_data = CategoryChartData()
@@ -913,73 +917,108 @@ if st.session_state.snapshot_generated:
     ################# Add line charts
 
     series_chart = [
-        tcd_transac_total["id_transaction"],
-        tcd_transac_total["prix"],
-        tcd_transac_total["avg_price_squaredmetters"],
-        tcd_transac_type_batiment["id_transaction"]["Maison"],
-        tcd_transac_type_batiment["prix"]["Maison"],
-        tcd_transac_type_batiment["avg_price_squaredmetters"]["Maison"],
-        tcd_transac_type_batiment["id_transaction"]["Appartement"],
-        tcd_transac_type_batiment["prix"]["Appartement"],
-        tcd_transac_type_batiment["avg_price_squaredmetters"]["Appartement"],
+        [
+            tcd_transac_total["id_transaction"],
+            tcd_transac_total["prix"],
+            tcd_transac_total["avg_price_squaredmetters"],
+        ],
+        [
+            tcd_transac_type_batiment["id_transaction"]["Maison"],
+            tcd_transac_type_batiment["prix"]["Maison"],
+            tcd_transac_type_batiment["avg_price_squaredmetters"]["Maison"],
+        ],
+        [
+            tcd_transac_type_batiment["id_transaction"]["Appartement"],
+            tcd_transac_type_batiment["prix"]["Appartement"],
+            tcd_transac_type_batiment["avg_price_squaredmetters"]["Appartement"],
+        ],
     ]
 
-    dict_chart = {
-        FR: [
-            "Nombre de ventes - Total",
-            "Prix moyen de vente - Total",
-            "Prix moyen du m² - Total",
-            "Nombre de ventes - Maisons",
-            "Prix moyen de vente - Maisons",
-            "Prix moyen du m² - Maisons",
-            "Nombre de ventes - Appartements",
-            "Prix moyen de vente - Appartements",
-            "Prix moyen du m² - Appartements",
-        ],
-        EN: [
-            "Number of Sales - Total",
-            "Average Price of Sales - Total",
-            "Average Price of m² - Total",
-            "Number of Sales - Houses",
-            "Average Price of Sales - Houses",
-            "Average Price of m² - Houses",
-            "Number of Sales - Flats",
-            "Average Price of Sales - Flats",
-            "Average Price of m² - Flats",
-        ],
+    dict_slide_titles = {
+        FR: ["Evolution - Total", "Evolution - Maisons", " Evolution - Appartements"],
+        EN: ["Evolution - Total", "Evolution - Houses", " Evolution - Flats"],
     }
 
-    for i in range(len(series_chart)):
+    dict_chart_titles = {
+        FR: ["Nombre de ventes", "Prix moyen de vente", "Prix moyen du m²"],
+        EN: ["Number of Sales", "Average Price of Sales", "Average Price of m²"],
+    }
+
+    x_charts = {
+        0: 0.3,
+        1: 3.4,
+        2: 6.5,
+    }
+
+    color_line = {
+        0: RGBColor(191, 0, 0),
+        1: RGBColor(0, 148, 0),
+        2: RGBColor(0, 0, 170),
+    }
+
+    dict_pic = {1: "./files/images/house.png", 2: "./files/images/flat.png"}
+
+    for count_slide in range(len(series_chart)):
         slide = prs.slides.add_slide(slide_layout)
         title = slide.shapes.title
-        title.text = dict_chart[local][i]
+        title.text = dict_slide_titles[local][count_slide]
 
-        x, y, cx, cy = Inches(0.5), Inches(1.75), Inches(8.5), Inches(3.5)
+        if count_slide > 0:
+            pic = slide.shapes.add_picture(
+                dict_pic[count_slide], Inches(8.5), Inches(0.4), Inches(1), Inches(1)
+            )
 
-        shape = slide.shapes.add_shape(1, x, y, cx, cy)  # Rectangle shape
-        shape.fill.solid()
-        shape.fill.fore_color.rgb = RGBColor(255, 255, 255)
-        shape.line.fill.background()
+        for count_chart in range(len(series_chart[count_slide])):
+            x, y, cx, cy = (
+                Inches(x_charts[count_chart]),
+                Inches(2),
+                Inches(3),
+                Inches(3),
+            )
 
-        chart_data = CategoryChartData()
-        chart_data.categories = series_chart[i].index
-        chart_data.add_series(dict_chart[local][i], series_chart[i].to_list())
+            shape = slide.shapes.add_shape(1, x, y, cx, cy)  # Rectangle shape
+            shape.fill.solid()
+            shape.fill.fore_color.rgb = RGBColor(255, 255, 255)
 
-        chart = slide.shapes.add_chart(
-            XL_CHART_TYPE.LINE,
-            x,
-            y,
-            cx,
-            cy,
-            chart_data,
-        ).chart
+            shape.line.color.rgb = RGBColor(130, 199, 165)  # Border color
+            shape.line.width = Inches(0.05)
 
-        chart.has_title = False
-        chart.category_axis.tick_labels.font.size = Pt(12)
-        chart.value_axis.tick_labels.font.size = Pt(12)
-        chart.has_legend = True
-        chart.legend.position = XL_LEGEND_POSITION.BOTTOM
-        chart.legend.font.size = Pt(12)
+        for count_chart in range(len(series_chart[count_slide])):
+            x, y, cx, cy = (
+                Inches(x_charts[count_chart]),
+                Inches(2),
+                Inches(3),
+                Inches(3),
+            )
+
+            chart_data = CategoryChartData()
+            chart_data.categories = series_chart[count_slide][count_chart].index
+            chart_data.add_series(
+                dict_chart_titles[local][count_chart],
+                series_chart[count_slide][count_chart].tolist(),
+            )
+
+            chart = slide.shapes.add_chart(
+                XL_CHART_TYPE.LINE,
+                x,
+                y,
+                cx,
+                cy,
+                chart_data,
+            ).chart
+
+            chart.has_title = True
+            chart.chart_title.text_frame.text = dict_chart_titles[local][count_chart]
+            chart.chart_title.text_frame.paragraphs[0].font.size = Pt(12)
+
+            chart.category_axis.tick_labels.font.size = Pt(10)
+            chart.value_axis.tick_labels.font.size = Pt(10)
+            chart.has_legend = False
+
+            for series in chart.series:
+                line = series.format.line
+                line.fill.solid()
+                line.fill.fore_color.rgb = color_line[count_chart]
 
     # Save the presentation to a BytesIO buffer
 
