@@ -17,7 +17,7 @@ if "local" not in st.session_state:
 # Sidebar Local Selection
 with st.sidebar.expander("**Language**"):
     local = st.radio(
-        "Select Local / Sélectionnez la langue:",
+        "Select language / Sélectionnez la langue:",
         (FR, EN),
         index=0 if st.session_state.local == FR else 1,
     )
