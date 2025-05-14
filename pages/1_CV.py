@@ -95,22 +95,91 @@ with col2:
             "**Points forts :** Analytique, agile, flexible, créatif et sociable."
         )
 
+st.divider()
 
+
+with open("./files/cv_pdf/CV_MehdiBennis_2025.pdf", "rb") as file:
+    pdf_data = file.read()
+
+if local == EN:
+    download_txt_button = "Download English CV"
+else:
+    download_txt_button = "Télécharger le CV en anglais"
+
+col1, col2, col3 = st.columns([1, 1, 1])
+with col1:
+    pass
+with col2:
+    st.download_button(
+        label=download_txt_button,
+        data=pdf_data,
+        file_name="CV_MehdiBennis_2025.pdf",
+        mime="application/pdf",
+    )
+with col3:
+    pass
 #### ACTIVITE PRO
 
-######### EASYPICKY
 st.divider()
 if local == EN:
     st.header(":briefcase: Professional Experience", anchor="pro")
 else:
     st.header(":briefcase: Expériences professionnelles", anchor="pro")
 
+######### Recherche
+
+st.divider()
+
+col1, col2 = st.columns([10, 4], vertical_alignment="center")
+with col1:
+    if local == EN:
+        st.markdown(
+            "<span style='font-size:25px; font-weight:bold'>Research Engineering</span>",
+            unsafe_allow_html=True,
+        )
+    else:
+        st.markdown(
+            "<span style='font-size:25px; font-weight:bold'>Ingénierie de recherche</span>",
+            unsafe_allow_html=True,
+        )
+with col2:
+    st.markdown(
+        "<div style='text-align: right; width:100%;'><span style='font-size:25px; font-weight:bold;'>Freelance</span></div>",
+        unsafe_allow_html=True,
+    )
+
+if local == EN:
+    date = "Montpellier, since february 2025"
+else:
+    date = "Montpellier, depuis Février 2025"
+
+st.markdown(date)
+
+if local == EN:
+    st.markdown(
+        """
+    - Research engineering in collaboration with a political science university researcher
+    - **Creation and processing of databases** based on election results. **Implementation of ad hoc solutions** to meet the researcher's needs
+    """,
+        unsafe_allow_html=True,
+    )
+else:
+    st.markdown(
+        """
+    - Ingénierie de recherche en collaboration avec une maîtresse de conférence en sciences politiques
+    - **Création et traitement de bases de données** basées sur les résultats électoraux. **Mise en place de solutions ad hoc** pour répondre aux besoins de la chercheuse
+    """,
+        unsafe_allow_html=True,
+    )
+
+######### EASYPICKY
+
 st.divider()
 
 col1, col2 = st.columns([10, 4], vertical_alignment="center")
 with col1:
     st.markdown(
-        "<span style='font-size:25px; font-weight:bold'>Customer Success Manager, EasyPicky</span>",
+        "<span style='font-size:25px; font-weight:bold'>Customer Success Manager</span>",
         unsafe_allow_html=True,
     )
 with col2:
@@ -121,21 +190,20 @@ st.markdown("Montpellier, 2023-02 / 2024-09")
 if local == EN:
     st.markdown(
         """
-    - Responsible for managing EasyPicky customer accounts.
-    - Introduced Customer Success best practices: quarterly account reviews,
-    satisfaction surveys, user roundtables.
-    - Drafted new KPIs to track account success based on users’ data, from data gathering to analysis.
-    - Worked closely with developers to improve EasyPicky’s solution based on customer and
+    - Responsible for managing EasyPicky customer accounts. **Introduced Customer Success best practices to the company**: quarterly account reviews,
+    satisfaction surveys, user roundtables
+    - **Drafted new KPIs to track account success** based on users’ data, from data gathering to analysis
+    - **Worked closely with developers** to improve EasyPicky’s solution based on customer and
     users’ feedback
-    """
+    """,
+        unsafe_allow_html=True,
     )
 else:
     st.markdown(
         """
-    - Responsable de la gestion des comptes clients d'EasyPicky.
-    - Introduction de meilleures pratiques Customer Success : bilans trimestriels des comptes, enquêtes de satisfaction, tables rondes avec les utilisateurs.
-    - Création de nouveaux KPI pour suivre le succès des comptes en se basant sur les données des utilisateurs : de la compilation des données brutes à l'analyse des résultats.
-    - Collaboration étroite avec les développeurs pour améliorer la solution EasyPicky en se basant sur les retours clients et utilisateurs.
+    - Responsable de la gestion des comptes clients d'EasyPicky. **Mise en place de meilleures pratiques Customer Success** : bilans trimestriels des comptes, enquêtes de satisfaction, tables rondes avec les utilisateurs
+    - **Création de nouveaux KPI pour suivre le succès des comptes** en se basant sur les données des utilisateurs : de la compilation des données brutes à l'analyse des résultats
+    - **Collaboration étroite avec les développeurs** pour améliorer la solution EasyPicky en se basant sur les retours clients et utilisateurs
 """
     )
 
@@ -145,7 +213,7 @@ st.divider()
 col1, col2 = st.columns([10, 4], vertical_alignment="center")
 with col1:
     st.markdown(
-        "<span style='font-size:25px; font-weight:bold'>Solution Engineer, Alida</span>",
+        "<span style='font-size:25px; font-weight:bold'>Solution Engineer</span>",
         unsafe_allow_html=True,
     )
 with col2:
@@ -156,23 +224,19 @@ st.markdown("Montpellier (full remote), 2021-01 / 2023-02")
 if local == EN:
     st.markdown(
         """
-    - Collaborates with sales teams to identify and uncover customer's strategic objectives and CX opportunities
-    - Maps the prospect’s business and technology needs to Alida's solutions and helps validate key use cases
-    - Provides solution expertise through product demonstrations and technical consultation
-    - Identifies opportunities for data integrations to enhance platform value and user adoption
-    - Works collaboratively with Product Management and Product Marketing during the development, launch, and refinement of Alida solutions
-    - Conducting Tech Product webinar for prospects and customers
+    - **Maps the prospect’s business and technology needs to Alida's solutions** and helps validate key use cases. **Work in collaboration with sales team** to close deals
+    - Provides solution expertise through **product demonstrations** and **technical consultation**
+    - **Works collaboratively with Product Management and Product Marketing** during the development, launch, and refinement of Alida solutions
+    - **Conducting Tech Product webinar** for prospects and customers
     """
     )
 else:
     st.markdown(
         """
-    - Collaboration avec les équipes commerciales pour identifier les objectifs stratégiques du client et les opportunités CX.
-    - Cartographier les besoins commerciaux et technologiques du prospect avec les solutions d'Alida et aider à valider les cas d'utilisation clés.
-    - Fournir une expertise des solutions Alida par le biais de démos produits et de consultations techniques.
-    - Identification des opportunités d'intégration de données clients afin d'optimiser l'utilisation de la plateforme et renforcer l'adoption des clients.
-    - Travail en collaboration avec les équipes Product Management et Product Marketing pendant le développement, le lancement et l'amélioration des solutions Alida.
-    - Animation de webinaire sur les produits Alida à destination des prospects et clients (live & enregistrés)
+    - **Cartographier les besoins commerciaux et technologiques du prospect avec les solutions d'Alida** et aider à valider les cas d'utilisation clés. **Travail en collaboration avec les équipes commerciales**
+    - Fournir une expertise des solutions Alida par le biais de **démos produits** et de **consultations techniques**
+    - **Travail en collaboration avec les équipes Product Management et Product Marketing** pendant le développement, le lancement et l'amélioration des solutions Alida
+    - **Animation de webinaire** sur les solutions Alida à destination des prospects et clients
     """
     )
 
@@ -182,7 +246,7 @@ st.divider()
 col1, col2 = st.columns([10, 4], vertical_alignment="center")
 with col1:
     st.markdown(
-        "<span style='font-size:25px; font-weight:bold'>Senior Customer Success Manager, Alida</span>",
+        "<span style='font-size:25px; font-weight:bold'>Senior Customer Success Manager</span>",
         unsafe_allow_html=True,
     )
 with col2:
@@ -196,14 +260,14 @@ st.markdown("Montpellier (full remote), 2017-09 / 2021-01")
 if local == EN:
     st.markdown(
         """
-    - Responsible for managing 14 accounts across various verticals (insurance, utilities, retail, media, FMCG, charities. . . ) and focused on opportunities to develop them. Management of junior collaborators.
+    - **Responsible for managing 14 accounts** across various verticals (insurance, utilities, retail, media, FMCG, charities. . . ) and focused on opportunities to develop them. **Management of junior collaborators**.
     - **Product Champion:** In charge of gathering client feedbacks in order to improve our software, managing EAP and showcasing new features to customers.
     """
     )
 else:
     st.markdown(
         """
-    - Responsable de la gestion de 14 comptes dans divers secteurs (assurance, services publics, retail, médias, produits de grande consommation, organisations caritatives...) et des possibilités de les développer. Management de collaborateurs juniors.
+    - **Responsable de la gestion de 14 comptes** dans divers secteurs (assurance, services publics, retail, médias, produits de grande consommation, organisations caritatives...) et des possibilités de les développer. **Management de collaborateurs juniors**
     - **Product Champion :** Chargé de recueillir les feedback clients afin d'améliorer nos solutions, de gérer l'adoption de nouvelles fonctionnalités et de présenter les innovations aux clients.
     """
     )
@@ -215,7 +279,7 @@ st.divider()
 col1, col2 = st.columns([10, 4], vertical_alignment="center")
 with col1:
     st.markdown(
-        "<span style='font-size:25px; font-weight:bold'>Customer Success Manager, Vision Critical</span>",
+        "<span style='font-size:25px; font-weight:bold'>Customer Success Manager</span>",
         unsafe_allow_html=True,
     )
 with col2:
@@ -225,17 +289,17 @@ st.markdown("""London & Paris, 2014-09 / 2017-09""")
 if local == EN:
     st.markdown(
         """
-    - Worked on many research (qual & quant): end-to-end projects from brief to questionnaire design, data analysis, reports, recommendation and insight workshops.
-    - Managed all elements of the communities’ lifecycle, including recruitment, engagement, health and satisfaction, overall success and ROI.
-    - Worked hand in hand with clients, in order to understand clearly their needs and help them to be successful.
+    - **Worked on many research (qual & quant)**: end-to-end projects from brief to questionnaire design, data analysis, reports, recommendation and insight workshops.
+    - **Managed all elements of the communities’ lifecycle**, including recruitment, engagement, health and satisfaction, overall success and ROI.
+    - **Worked hand in hand with clients**, in order to understand clearly their needs and help them to be successful.
     """
     )
 else:
     st.markdown(
         """
-    - A travaillé sur de nombreuses études (qualitatives et quantitatives) : phase de brief, conception du questionnaire, analyse des données, rapports, recommandations et aux ateliers de réflexion.
-    - Gestion de tous les éléments du cycle de vie des communautés : recrutement, engagement, santé et satisfaction, critères de succès et validation du ROI.
-    - Travailler en étroite collaboration avec les clients, afin de comprendre clairement leurs besoins et de les accompagner.
+    - **A travaillé sur de nombreuses études (qualitatives et quantitatives)** : phase de brief, conception du questionnaire, analyse des données, rapports, recommandations et aux ateliers de réflexion
+    - **Gestion de tous les éléments du cycle de vie des communautés** : recrutement, engagement, santé et satisfaction, critères de succès et validation du ROI
+    - **Travailler en étroite collaboration avec les clients**, afin de comprendre clairement leurs besoins et de les accompagner
 """
     )
 
@@ -279,15 +343,15 @@ with col2:
     if local == EN:
         st.markdown(
             """
-            - Master’s Degree in « Surveys and Consulting » M2CO, University of Montpellier, 2014
-            - University Diploma in Market Research and Opinion Polls, University of Montpellier, 2014
+            - Master’s Degree in « Surveys and Consulting » M2CO, Political Science University of Montpellier, 2014
+            - University Diploma in Market Research and Opinion Polls, Political Science University of Montpellier, 2014
             """
         )
     else:
         st.markdown(
             """
-            - Master 2 « Métiers des études et du conseil » M2CO, Université de Montpellier, 2014
-            - Diplôme universitaire en études de marché et d'opinion, Université de Montpellier, 2014
+            - Master 2 « Métiers des études et du conseil » M2CO, Université de Science Politique de Montpellier, 2014
+            - Diplôme universitaire en études de marché et d'opinion, Université de Science Politique de Montpellier, 2014
             """
         )
 col1, col2 = st.columns([2, 15], vertical_alignment="center")
@@ -351,28 +415,62 @@ else:
     st.header(":toolbox: Compétences", anchor="skill")
 st.divider()
 
-if local == EN:
-    st.markdown(
-        """
-        - **Python**, specialization in data analytics : Pandas, Scikit Learn, Plotly, Matplotlib, Seaborn, python-pptx, Streamlit, requests, poetry...
-        - Advanced knowledge in **SQL**, worked on MySQL, Google BigQuery.
-        - **Dataviz** : Looker, PowerBI, Apache Superset
-        - **Automation** : Fivetran, Zapier, Airflow
-        - Advanced knowledge in **MS Excel**, **Word** and **PowerPoint**
-        - Knowledge in **HTML**, **CSS**
-        """
-    )
-else:
-    st.markdown(
-        """
-        - **Python**, spécialisation en analyse de données : Pandas, Scikit Learn, Plotly, Matplotlib, Seaborn, python-pptx, Streamlit, requests, poetry...
-        - Connaissance avancée du langage **SQL**, travail sur MySQL, Google BigQuery.
-        - **Data visualisation** : Looker, PowerBI, Apache Superset
-        - **Automatisation** : Fivetran, Zapier, Airflow
-        - Connaissances avancées en **MS Excel**, **Word** et **PowerPoint**
-        - Connaissances en **HTML**, **CSS**
-        """
-    )
+col1, col2 = st.columns([1, 1])
+
+with col1:
+    if local == EN:
+        st.markdown(
+            """
+            ### Computing
+
+            - **Python**: specialization in data analytics
+            - Packages worked with : Pandas, Scikit Learn, Plotly, Matplotlib, Seaborn, python-pptx, streamlit, requests, Beautiful Soup, poetry...
+            - **SQL**: worked on MySQL, Google BigQuery, DBT
+            - **Dataviz**: Looker, PowerBi, Apache Superset
+            - **Automation**: Fivetran, Zapier, Airflow
+            - **Collaboration**: GitHub
+            - Knowledge in **HTML, CSS**
+            """
+        )
+    else:
+        st.markdown(
+            """
+            ### Informatique
+
+            - **Python**: spécialisation en data analytics
+            - Packages utilisés : Pandas, Scikit Learn, Plotly, Matplotlib, Seaborn, python-pptx, streamlit, requests, Beautiful Soup, poetry...
+            - **SQL**: a travaillé sur MySQL, Google BigQuery, DBT
+            - **Dataviz**: Looker, PowerBi, Apache Superset
+            - **Automation**: Fivetran, Zapier, Airflow
+            - **Collaboration**: GitHub
+            - Connaissances en **HTML, CSS**
+            """
+        )
+
+with col2:
+    if local == EN:
+        st.markdown(
+            """
+            ### Project Management
+
+            - Customer Success Project Management, from Project Kick Off to Renewal
+            - Designing and analysing market research projects from brief to recommendation
+            - Animation of training for students, coworkers and customers: Python for Data Analytics, Excel, Dataviz, Market Research
+            - Advanced knowledge in **MS Excel, Word** and **PowerPoint**
+            """
+        )
+    else:
+        st.markdown(
+            """
+            ### Gestion de projet
+
+            - Gestion des projets Customer SUccess, du lancement du projet à son renouvellement
+            - Conception et analyse de projets d'études de marché, du briefing à la recommandation
+            - Animation de formations pour les étudiants, les collaborateurs et les clients : Python pour l'analyse de données, Excel, Dataviz, études de marché.
+            - Connaissances avancées en **MS Excel, Word** et **PowerPoint**.
+            """
+        )
+
 
 #### Languages
 
@@ -413,18 +511,14 @@ st.divider()
 if local == EN:
     st.markdown(
         """
-        - :musical_note: **Music enthusiast** : (Rock, Metal, Jazz, Hip Hop, Folk…). Play guitar and bass. Learn piano.
+        - :musical_note: **Music enthusiast** : (Rock, Metal, Jazz, Hip Hop, Folk…). Self-taught guitar, bass and piano
         - :chess_pawn: **Chess & Role-Playing Games**
-        - :man-swimming: **Sport**: Swimming, Gym
-        - :book: **Various reading**: Fantasy novels, SF
         """
     )
 else:
     st.markdown(
         """
-        - :musical_note: **Amateur de musique** : (Rock, Metal, Jazz, Hip Hop, Folk…). Joue de la guitare et de la basse. Apprentissage du piano.
+        - :musical_note: **Amateur de musique** : (Rock, Metal, Jazz, Hip Hop, Folk…). Apprentissage autodidacte de la basse, de la guitare et du piano
         - :chess_pawn: **Échecs & Jeux de rôle**
-        - :man-swimming: **Sport** : Natation, Gym
-        - :book: **Lectures diverses** : Romans de fantaisie, Science Fiction
         """
     )
