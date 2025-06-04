@@ -95,29 +95,30 @@ with col2:
             "**Points forts :** Analytique, agile, flexible, créatif et sociable."
         )
 
-st.divider()
+# st.divider()
 
 
-with open("./files/cv_pdf/CV_MehdiBennis_2025.pdf", "rb") as file:
-    pdf_data = file.read()
+# with open("./files/cv_pdf/CV_MehdiBennis_2025.pdf", "rb") as file:
+#     pdf_data = file.read()
 
-if local == EN:
-    download_txt_button = "Download English CV"
-else:
-    download_txt_button = "Télécharger le CV en anglais"
+# if local == EN:
+#     download_txt_button = "Download English CV"
+# else:
+#     download_txt_button = "Télécharger le CV en anglais"
 
-col1, col2, col3 = st.columns([1, 1, 1])
-with col1:
-    pass
-with col2:
-    st.download_button(
-        label=download_txt_button,
-        data=pdf_data,
-        file_name="CV_MehdiBennis_2025.pdf",
-        mime="application/pdf",
-    )
-with col3:
-    pass
+# col1, col2, col3 = st.columns([1, 1, 1])
+# with col1:
+#     pass
+# with col2:
+#     st.download_button(
+#         label=download_txt_button,
+#         data=pdf_data,
+#         file_name="CV_MehdiBennis_2025.pdf",
+#         mime="application/pdf",
+#     )
+# with col3:
+#     pass
+
 #### ACTIVITE PRO
 
 st.divider()
