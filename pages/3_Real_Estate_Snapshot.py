@@ -2,6 +2,9 @@ import streamlit as st
 from streamlit_folium import st_folium
 import folium
 from geopy.geocoders import Nominatim
+from geopy.exc import GeocoderUnavailable, GeocoderTimedOut
+import time
+
 import pandas as pd
 import numpy as np
 import plotly.express as px
@@ -198,19 +201,46 @@ else:
         unsafe_allow_html=True,
     )
 
+##
+
 # Address search box
 address = st.text_input(dict_translation["map_search"][local])
 
 if st.button(dict_translation["search"][local]):
     if address:
         geolocator = Nominatim(user_agent="streamlit-app")
-        location = geolocator.geocode(address)
 
-        if location:
-            st.session_state.last_location = [location.latitude, location.longitude]
-            st.success(f"Location found: {location.latitude}, {location.longitude}")
-        else:
-            st.error("Location not found. Try a different address.")
+        try:
+            # Respecter la limite Nominatim : max 1 requête/sec
+            time.sleep(1)
+            location = geolocator.geocode(address, timeout=10)
+
+            if location:
+                st.session_state.last_location = [location.latitude, location.longitude]
+                st.success(f"Location found: {location.latitude}, {location.longitude}")
+            else:
+                st.error("Location not found. Try a different address.")
+
+        except (GeocoderUnavailable, GeocoderTimedOut) as e:
+            st.error("Geocoding service is unavailable. Please try again later.")
+            st.write(e)  # optionnel, pour debug
+        except Exception as e:
+            st.error("An unexpected error occurred during geocoding.")
+            st.write(e)
+
+# Address search box
+# address = st.text_input(dict_translation["map_search"][local])
+
+# if st.button(dict_translation["search"][local]):
+#     if address:
+#         geolocator = Nominatim(user_agent="streamlit-app")
+#         location = geolocator.geocode(address)
+
+#         if location:
+#             st.session_state.last_location = [location.latitude, location.longitude]
+#             st.success(f"Location found: {location.latitude}, {location.longitude}")
+#         else:
+#             st.error("Location not found. Try a different address.")
 
 # Distance selection slider
 
