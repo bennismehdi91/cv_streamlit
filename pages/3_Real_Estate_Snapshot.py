@@ -184,8 +184,7 @@ if local == FR:
     st.write("### Rechercher une localisation")
     st.markdown(
         """
-                Vous pouvez indiquer le nom d'une ville, ou une adresse dans la barre de recherche ci-dessous.<br>
-                Si vous le souhaitez, vous pouvez zoomer et cliquer directement sur la carte pour placer le curseur.<br>
+                Zoomez et cliquez directement sur la carte pour placer le curseur.<br>
                 Enfin, utilisez le slider pour définir le rayon la zone de recherche autour du curseur (en mètres)<br>
                 """,
         unsafe_allow_html=True,
@@ -194,8 +193,7 @@ else:
     st.write("### Search for a location")
     st.markdown(
         """
-                You can enter a city name or address in the search bar below.<br>
-                If you wish, you can zoom in and click directly on the map to place the cursor.<br>
+                Zoom in and click directly on the map to place the cursor.<br>
                 Finally, use the slider to define the radius of the search zone around the cursor (in meters).<br>
                 """,
         unsafe_allow_html=True,
@@ -204,29 +202,29 @@ else:
 ##
 
 # Address search box
-address = st.text_input(dict_translation["map_search"][local])
+# address = st.text_input(dict_translation["map_search"][local])
 
-if st.button(dict_translation["search"][local]):
-    if address:
-        geolocator = Nominatim(user_agent="streamlit-app")
+# if st.button(dict_translation["search"][local]):
+#     if address:
+#         geolocator = Nominatim(user_agent="streamlit-app")
 
-        try:
-            # Respecter la limite Nominatim : max 1 requête/sec
-            time.sleep(1)
-            location = geolocator.geocode(address, timeout=10)
+#         try:
+#             # Respecter la limite Nominatim : max 1 requête/sec
+#             time.sleep(1)
+#             location = geolocator.geocode(address, timeout=10)
 
-            if location:
-                st.session_state.last_location = [location.latitude, location.longitude]
-                st.success(f"Location found: {location.latitude}, {location.longitude}")
-            else:
-                st.error("Location not found. Try a different address.")
+#             if location:
+#                 st.session_state.last_location = [location.latitude, location.longitude]
+#                 st.success(f"Location found: {location.latitude}, {location.longitude}")
+#             else:
+#                 st.error("Location not found. Try a different address.")
 
-        except (GeocoderUnavailable, GeocoderTimedOut) as e:
-            st.error("Geocoding service is unavailable. Please try again later.")
-            st.write(e)  # optionnel, pour debug
-        except Exception as e:
-            st.error("An unexpected error occurred during geocoding.")
-            st.write(e)
+#         except (GeocoderUnavailable, GeocoderTimedOut) as e:
+#             st.error("Geocoding service is unavailable. Please try again later.")
+#             st.write(e)  # optionnel, pour debug
+#         except Exception as e:
+#             st.error("An unexpected error occurred during geocoding.")
+#             st.write(e)
 
 # Address search box
 # address = st.text_input(dict_translation["map_search"][local])
